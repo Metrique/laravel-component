@@ -10,7 +10,7 @@ class Constituent implements ConstituentInterface
     {
         return Blade::directive('constituent', function ($expression) {
             return "<?php
-                \$__expression = \Metrique\Constituent::prepare($expression);
+                \$__expression = \Metrique\Constituent\Constituent::prepare($expression);
 
                 echo \$__env->make(\$__expression['constituent'], \$__expression['params'],
                 array_except(get_defined_vars(), array('__data', '__path')))->render();
