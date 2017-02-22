@@ -3,6 +3,7 @@
 namespace Metrique\Constituent;
 
 use Illuminate\Support\ServiceProvider;
+use Metrique\Constituent\ConstituentViewComposer;
 
 class ConstituentServiceProvider extends ServiceProvider
 {
@@ -14,6 +15,7 @@ class ConstituentServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->bootBladeDirective();
+        $this->bootViewComposer();
     }
 
     /**
@@ -26,8 +28,13 @@ class ConstituentServiceProvider extends ServiceProvider
         //
     }
 
-    public function bootBladeDirective()
+    protected function bootBladeDirective()
     {
         Constituent::bladeDirective();
+    }
+
+    protected function bootViewComposer()
+    {
+        view()->composer('*', ConstituentViewComposer::class);
     }
 }
