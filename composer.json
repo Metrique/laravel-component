@@ -1,6 +1,6 @@
 {
     "name": "metrique/laravel-constituent",
-    "description": "Helper library for creating blade components that work well with lmetrique/laravel-building",
+    "description": "Helper library for creating blade components that work well with metrique/laravel-building",
     "type": "library",
     "require": {
         "illuminate/support": "^5.4"
