@@ -3,10 +3,12 @@
     "description": "Helper library for creating blade components that work well with lmetrique/laravel-building",
     "type": "library",
     "require": {
-        "illuminate/support": "^5.4",
+        "illuminate/support": "^5.4"
     },
     "require-dev": {
-        "php": "^7.0"
+        "php": "^7.0",
+        "phpunit/phpunit": "^4.8",
+        "fzaninotto/faker": "^1.6"
     },
     "license": "MIT",
     "authors": [
