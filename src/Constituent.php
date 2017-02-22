@@ -23,8 +23,8 @@ class Constituent implements ConstituentInterface
     public static function prepare(string $constituent, array $params = [])
     {
         array_key_exists('class', $params) ?: $params['class'] = [];
-        $params['classes'] => $this->class($params['class']);
-        
+        $params['classes'] = $this->class($params['class']);
+
         return [
             'constituent' => $constituent,
             'params' => $params,
