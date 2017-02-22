@@ -3,6 +3,8 @@
 namespace Metrique\Constituent;
 
 use Illuminate\Support\ServiceProvider;
+use Metrique\Constituent\Constituent;
+use Metrique\Constituent\ConstituentInterface;
 use Metrique\Constituent\ConstituentViewComposer;
 
 class ConstituentServiceProvider extends ServiceProvider
@@ -25,7 +27,7 @@ class ConstituentServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(ConstituentInterface::class, Constituent::class);
     }
 
     protected function bootBladeDirective()
