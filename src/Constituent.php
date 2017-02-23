@@ -40,4 +40,15 @@ class Constituent implements ConstituentInterface
 
         return $classes;
     }
+
+    public function classAttr(array $array1, array $array2 = [])
+    {
+        $classes = $this->class($array1, $array2);
+
+        if (empty($classes)) {
+            return '';
+        }
+
+        return sprintf('class="%s"', $classes);
+    }
 }

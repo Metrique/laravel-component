@@ -20,10 +20,21 @@ interface ConstituentInterface
 
     /**
      * Merges two arrays into a css class string
+     *
      * @param  array  $array1
      * @param  array $array2
      * @param  bool $implode
      * @return string
      */
     public function class(array $array1, array $array2 = [], $implode = true);
+
+    /**
+     * Merges two arrays into an HTML class attribute.
+     *
+     * @param  array  $array1
+     * @param  array $array2
+     * @param  bool $implode
+     * @return string
+     */
+    public function classAttr(array $array1, array $array2 = []);
 }
