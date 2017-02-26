@@ -37,4 +37,13 @@ interface ConstituentInterface
      * @return string
      */
     public function classAttr(array $array1, array $array2 = []);
+
+    /**
+     * Returns an attribute if the value is not empty.
+     *
+     * @param  string $attributeName  [description]
+     * @param  string $attributeValue [description]
+     * @return [type]                 [description]
+     */
+    public function attrIf(string $attrKey, string $attrValue);
 }
