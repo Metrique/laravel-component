@@ -3,13 +3,13 @@
 namespace Metrique\Constituent;
 
 use Illuminate\Contracts\View\View;
-use Metrique\Constituent\ConstituentInterface as Constituent;
+use Metrique\Constituent\ConstituentInterface;
 
 class ConstituentViewComposer
 {
     protected $constituent;
 
-    public function __construct(Constituent $constituent)
+    public function __construct(ConstituentInterface $constituent)
     {
         $this->constituent = $constituent;
     }
