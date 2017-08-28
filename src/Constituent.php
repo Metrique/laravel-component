@@ -4,8 +4,16 @@ namespace Metrique\Constituent;
 
 use Illuminate\Support\Facades\Blade;
 
+use Metrique\Constituent\Traits\ArrayParameters;
+use Metrique\Constituent\Traits\StringParameters;
+use Metrique\Constituent\Traits\Strings;
+
 class Constituent implements ConstituentInterface
 {
+    use ArrayParameters;
+    use StringParameters;
+    use Strings;
+    
     public static function bladeDirective()
     {
         return Blade::directive('constituent', function ($expression) {
