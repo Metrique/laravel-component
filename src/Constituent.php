@@ -22,6 +22,7 @@ class Constituent implements ConstituentInterface
 
     public static function prepare(string $constituent, array $params = [])
     {
+        array_key_exists('attributes', $params) ?: $params['attributes'] = [];
         array_key_exists('class', $params) ?: $params['class'] = [];
 
         return [

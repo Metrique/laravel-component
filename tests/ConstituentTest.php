@@ -22,10 +22,12 @@ class ConstituentTest extends PHPUnit_Framework_TestCase
 
             $this->assertArrayHasKey('constituent', $expression);
             $this->assertArrayHasKey('params', $expression);
+            $this->assertArrayHasKey('attributes', $expression['params']);
             $this->assertArrayHasKey('class', $expression['params']);
 
             $this->assertInternalType('string', $expression['constituent']);
             $this->assertInternalType('array', $expression['params']);
+            $this->assertInternalType('array', $expression['params']['attributes']);
             $this->assertInternalType('array', $expression['params']['class']);
         }
     }
@@ -73,6 +75,18 @@ class ConstituentTest extends PHPUnit_Framework_TestCase
 
             array_push($expressionParams, [
                 'class' => $class
+            ]);
+        }
+        
+        for ($i = 0; $i < rand(5, 10); $i++) {
+            $attributes = [];
+
+            for ($j = 0; $j < rand(0, 10); $j++) {
+                $attributes[] = [$this->faker->word() => $this->faker->word()];
+            }
+
+            array_push($expressionParams, [
+                'attributes' => $attributes
             ]);
         }
 
