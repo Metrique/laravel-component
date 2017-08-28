@@ -58,7 +58,7 @@ class Constituent implements ConstituentInterface
             return '';
         }
 
-        return sprintf('class="%s"', $classes);
+        return sprintf('class="%s"', trim($classes));
     }
 
     public function attrIf(string $attrKey, string $attrValue)
