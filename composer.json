@@ -21,5 +21,14 @@
         "psr-4": {
             "Metrique\\Constituent\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Metrique\\Constituent\\ConstituentServiceProvider"
+            ],
+            "aliases": {
+            }
+        }
     }
 }
