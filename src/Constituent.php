@@ -29,14 +29,12 @@ class Constituent implements ConstituentInterface
     }
 
     public static function prepare(string $constituent, array $params = [])
-    {
-        $constituent = config('view.constituent.prefix', '') . $constituent;
-        
+    {        
         array_key_exists('attributes', $params) ?: $params['attributes'] = [];
         array_key_exists('class', $params) ?: $params['class'] = [];
 
         return [
-            'constituent' => $constituent,
+            'constituent' => config('view.constituent.prefix', '') . $constituent,
             'params' => $params,
         ];
     }
