@@ -41,13 +41,27 @@ class Constituent implements ConstituentInterface
 
     public function class(array $array1, array $array2 = [], $implode = true)
     {
-        $classes = array_merge($array1, $array2);
-
+        $classes = collect(array_merge($array1, $array2))
+            ->filter(function ($value, $key) {
+                if (is_int($key)) {
+                    return true;
+                }
+                
+                return $value;
+            })->map(function ($value, $key) {
+                if (is_int($key)) {
+                    return $value;
+                }
+                return $key;
+            });
+            
         if ($implode) {
-            return implode(' ', $classes);
+            return rtrim($classes->reduce(function ($carry, $item) {
+                return $carry . $item . ' ';
+            }));
         }
 
-        return $classes;
+        return $classes->toArray();
     }
 
     public function classAttr(array $array1, array $array2 = [])
