@@ -33,14 +33,14 @@ class Constituent implements ConstituentInterface
         array_key_exists('attributes', $params) ?: $params['attributes'] = [];
         array_key_exists('class', $params) ?: $params['class'] = [];
         
-        $prefix = '';
-        
-        if (class_exists('config')) {
+        try {
             $prefix = config('view.constituent.prefix', '');
+        } catch (\ReflectionException $e) {
+            $prefix = '';
         }
         
         return [
-            'constituent' => $constituent,
+            'constituent' => $prefix . $constituent,
             'params' => $params,
         ];
     }
