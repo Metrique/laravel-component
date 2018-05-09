@@ -29,31 +29,38 @@ class Constituent implements ConstituentInterface
     }
 
     public static function prepare(string $constituent, array $params = [])
-    {        
+    {
         array_key_exists('attributes', $params) ?: $params['attributes'] = [];
         array_key_exists('class', $params) ?: $params['class'] = [];
-
+        
+        $prefix = '';
+        
+        if (class_exists('config')) {
+            $prefix = config('view.constituent.prefix', '');
+        }
+        
         return [
-            'constituent' => config('view.constituent.prefix', '') . $constituent,
+            'constituent' => $constituent,
             'params' => $params,
         ];
     }
 
     public function class(array $array1, array $array2 = [], $implode = true)
     {
-        $classes = collect(array_merge($array1, $array2))
-            ->filter(function ($value, $key) {
-                if (is_int($key)) {
-                    return true;
-                }
+        $classes =collect(
+            array_merge($array1, $array2)
+        )->filter(function ($value, $key) {
+            if (is_int($key)) {
+                return true;
+            }
                 
+            return $value;
+        })->map(function ($value, $key) {
+            if (is_int($key)) {
                 return $value;
-            })->map(function ($value, $key) {
-                if (is_int($key)) {
-                    return $value;
-                }
-                return $key;
-            });
+            }
+            return $key;
+        });
             
         if ($implode) {
             return rtrim($classes->reduce(function ($carry, $item) {
