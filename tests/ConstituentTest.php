@@ -1,8 +1,9 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
 use Metrique\Constituent\Constituent;
 
-class ConstituentTest extends PHPUnit_Framework_TestCase
+class ConstituentTest extends TestCase
 {
     public $expressionParams;
     public $faker;
