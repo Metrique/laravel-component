@@ -14,7 +14,7 @@ class ConstituentTest extends PHPUnit_Framework_TestCase
         $this->faker = Faker\Factory::create();
         $this->expressionParams = $this->expressionParamsFactory();
     }
-
+    
     public function test_prepared_expression()
     {
         foreach ($this->expressionParams as $expression) {
@@ -71,6 +71,18 @@ class ConstituentTest extends PHPUnit_Framework_TestCase
 
             for ($j = 0; $j < rand(0, 10); $j++) {
                 $class[] = $this->faker->word();
+            }
+
+            array_push($expressionParams, [
+                'class' => $class
+            ]);
+        }
+        
+        for ($i = 0; $i < rand(5, 10); $i++) {
+            $class = [];
+
+            for ($j = 0; $j < rand(0, 10); $j++) {
+                $class[$this->faker->word()] = (bool) rand(0, 1);
             }
 
             array_push($expressionParams, [
