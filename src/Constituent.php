@@ -55,11 +55,12 @@ class Constituent implements ConstituentInterface
             }
                 
             return $value;
-        })->map(function ($value, $key) {
+        })->mapWithKeys(function ($value, $key) {
             if (is_int($key)) {
-                return $value;
+                return [$value];
             }
-            return $key;
+            
+            return [$key];
         });
             
         if ($implode) {

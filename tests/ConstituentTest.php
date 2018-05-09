@@ -62,28 +62,56 @@ class ConstituentTest extends TestCase
             }
         }
     }
+    
+    public function test_classes_filter_false_associative_arrays()
+    {
+        $constituent = new Constituent();
+        
+        foreach ($this->expressionParams as $key => $expression) {
+            $expression = Constituent::prepare($this->faker->word(), $expression);
+            
+            if (array_key_exists('class', $expression['params'])) {
+                
+                // Test imploded results too.
+                $implode = $key % 2 ? true : false;
+                
+                $class = $expression['params']['class'];
+
+                $classMerge = $constituent->class($class, [], $implode);
+                
+                if ($implode) {
+                    $this->assertInternalType('string', $classMerge);
+                }
+                
+                if (!$implode) {
+                    $this->assertInternalType('array', $classMerge);
+                    $this->assertContainsOnly('string', $classMerge);
+                }
+            }
+        }
+    }
 
     private function expressionParamsFactory()
     {
         $expressionParams = [];
 
-        for ($i = 0; $i < rand(5, 10); $i++) {
-            $class = [];
-
-            for ($j = 0; $j < rand(0, 10); $j++) {
-                $class[] = $this->faker->word();
-            }
-
-            array_push($expressionParams, [
-                'class' => $class
-            ]);
-        }
+        // for ($i = 0; $i < rand(5, 10); $i++) {
+        //     $class = [];
+        //
+        //     for ($j = 0; $j < rand(0, 10); $j++) {
+        //         $class[] = $this->faker->word();
+        //     }
+        //
+        //     array_push($expressionParams, [
+        //         'class' => $class
+        //     ]);
+        // }
         
         for ($i = 0; $i < rand(5, 10); $i++) {
             $class = [];
 
-            for ($j = 0; $j < rand(0, 10); $j++) {
-                $class[$this->faker->word()] = (bool) rand(0, 1);
+            for ($j = 0; $j < rand(2, 10); $j++) {
+                $class[$this->faker->word()] = ($j % 2 == 0) ? true : false;
             }
 
             array_push($expressionParams, [
@@ -93,11 +121,11 @@ class ConstituentTest extends TestCase
         
         for ($i = 0; $i < rand(5, 10); $i++) {
             $attributes = [];
-
+        
             for ($j = 0; $j < rand(0, 10); $j++) {
                 $attributes[] = [$this->faker->word() => $this->faker->word()];
             }
-
+        
             array_push($expressionParams, [
                 'attributes' => $attributes
             ]);
