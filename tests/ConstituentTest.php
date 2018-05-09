@@ -95,17 +95,17 @@ class ConstituentTest extends TestCase
     {
         $expressionParams = [];
 
-        // for ($i = 0; $i < rand(5, 10); $i++) {
-        //     $class = [];
-        //
-        //     for ($j = 0; $j < rand(0, 10); $j++) {
-        //         $class[] = $this->faker->word();
-        //     }
-        //
-        //     array_push($expressionParams, [
-        //         'class' => $class
-        //     ]);
-        // }
+        for ($i = 0; $i < rand(5, 10); $i++) {
+            $class = [];
+        
+            for ($j = 0; $j < rand(0, 10); $j++) {
+                $class[] = $this->faker->word();
+            }
+        
+            array_push($expressionParams, [
+                'class' => $class
+            ]);
+        }
         
         for ($i = 0; $i < rand(5, 10); $i++) {
             $class = [];
