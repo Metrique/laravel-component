@@ -10,6 +10,7 @@ trait StringParameters
      *
      * , denotes a new item.
      * : denotes a key/value seperator.
+     * | denotes multiple items in value.
      *
      * eg: ?location=longitude:1.0,latitude:1.0
      *
@@ -20,17 +21,33 @@ trait StringParameters
     {
         $increment = 0;
         $parameters = explode(',', $parameters, 255);
-        
+
         return collect($parameters)->mapWithKeys(
-            function ($parameter, $key) use (&$increment) {
+            function ($parameter) use (&$increment) {
+
+                // Look for key:value
                 $keyValues = explode(':', $parameter, 2);
 
-                if (count($keyValues) != 2) {
-                    return [$increment++ => $parameter];
+                if (count($keyValues) == 2) {
+                    $key = trim($keyValues[0]);
+                    $value = $keyValues[1];
+                }
+
+                // If no key value separator is given then just index into the array.
+                if (count($keyValues) == 1) {
+                    $key = $increment++;
+                    $value = $parameter;
+                }
+
+                // Look for multiple items in value.
+                $values = explode('|', $value);
+
+                if (count($value) > 1) {
+                    $value = $values;
                 }
 
                 return [
-                    trim($keyValues[0]) => $keyValues[1]
+                    $key => $value
                 ];
             }
         );
