@@ -42,7 +42,7 @@ trait StringParameters
                 // Look for multiple items in value.
                 $values = explode('|', $value);
 
-                if (count($value) > 1) {
+                if (count($values) > 1) {
                     $value = $values;
                 }
 
