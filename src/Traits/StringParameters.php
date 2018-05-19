@@ -10,7 +10,7 @@ trait StringParameters
      *
      * , denotes a new item.
      * : denotes a key/value seperator.
-     * | denotes multiple items in value.
+     * ; denotes multiple items in value.
      *
      * eg: ?location=longitude:1.0,latitude:1.0
      *
@@ -40,7 +40,7 @@ trait StringParameters
                 }
 
                 // Look for multiple items in value.
-                $values = explode('|', $value);
+                $values = explode(';', $value);
 
                 if (count($values) > 1) {
                     $value = $values;
