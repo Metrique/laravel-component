@@ -13,7 +13,7 @@ class Constituent implements ConstituentInterface
     use ArrayParameters;
     use StringParameters;
     use Strings;
-    
+
     public static function bladeDirective()
     {
         return Blade::directive('constituent', function ($expression) {
@@ -32,13 +32,13 @@ class Constituent implements ConstituentInterface
     {
         array_key_exists('attributes', $params) ?: $params['attributes'] = [];
         array_key_exists('class', $params) ?: $params['class'] = [];
-        
+
         try {
             $prefix = config('view.constituent.prefix', '');
         } catch (\ReflectionException $e) {
             $prefix = '';
         }
-        
+
         return [
             'constituent' => $prefix . $constituent,
             'params' => $params,
@@ -53,16 +53,16 @@ class Constituent implements ConstituentInterface
             if (is_int($key)) {
                 return true;
             }
-                
+
             return $value;
         })->mapWithKeys(function ($value, $key) {
             if (is_int($key)) {
-                return [$value];
+                return [$key => $value];
             }
-            
+
             return [$key];
         });
-            
+
         if ($implode) {
             return rtrim($classes->reduce(function ($carry, $item) {
                 return $carry . $item . ' ';
