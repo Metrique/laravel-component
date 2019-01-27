@@ -3,7 +3,7 @@
     "description": "Helper library for creating blade components that work well with metrique/laravel-building",
     "type": "library",
     "require": {
-        "laravel/framework": ">=5.4"
+        "laravel/framework": ">=5.5",
     },
     "require-dev": {
         "php": "^7.0",
