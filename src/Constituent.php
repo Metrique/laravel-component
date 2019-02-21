@@ -38,6 +38,11 @@ class Constituent implements ConstituentInterface
         } catch (\ReflectionException $e) {
             $prefix = '';
         }
+        
+        if (count(explode('::', $constituent)) == 2) {
+            $prefix = '';
+        }
+        
 
         return [
             'constituent' => $prefix . $constituent,
