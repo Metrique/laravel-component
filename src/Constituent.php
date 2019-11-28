@@ -3,7 +3,6 @@
 namespace Metrique\Constituent;
 
 use Illuminate\Support\Facades\Blade;
-
 use Metrique\Constituent\Traits\ArrayParameters;
 use Metrique\Constituent\Traits\StringParameters;
 use Metrique\Constituent\Traits\Strings;
@@ -21,7 +20,7 @@ class Constituent implements ConstituentInterface
                 \$__expression = \Metrique\Constituent\Constituent::prepare($expression);
 
                 echo \$__env->make(\$__expression['constituent'], \$__expression['params'],
-                array_except(get_defined_vars(), array('__data', '__path')))->render();
+                \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render();
 
                 unset(\$__expression);
             ?>";
@@ -38,11 +37,11 @@ class Constituent implements ConstituentInterface
         } catch (\ReflectionException $e) {
             $prefix = '';
         }
-        
+
         if (count(explode('::', $constituent)) == 2) {
             $prefix = '';
         }
-        
+
 
         return [
             'constituent' => $prefix . $constituent,
